@@ -464,43 +464,80 @@
   </section>
 
   <!-- CONTACTO -->
-  <section id="contacto" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 md:px-8">
-      <div class="grid lg:grid-cols-2 gap-10">
+<section id="contacto" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 md:px-8">
+    <div class="grid lg:grid-cols-2 gap-10">
+      <div>
+        <h2 class="font-mont text-3xl md:text-4xl font-extrabold">Conversemos</h2>
+        <p class="text-gray-600 mt-3">Completa el formulario y coordinamos una reunión. Respondemos en menos de 24h.</p>
+        <ul class="mt-6 space-y-3 text-gray-700">
+          <li><i class="fa-solid fa-circle-check text-gx-500 mr-2"></i> Plan a medida según objetivos</li>
+          <li><i class="fa-solid fa-circle-check text-gx-500 mr-2"></i> Sin tecnicismos, con claridad</li>
+          <li><i class="fa-solid fa-circle-check text-gx-500 mr-2"></i> Equipo implicado en resultados</li>
+        </ul>
+      </div>
+
+      <!-- Formulario con IDs -->
+      <form id="contactForm" class="bg-gray-50 rounded-2xl p-6 border space-y-4">
         <div>
-          <h2 class="font-mont text-3xl md:text-4xl font-extrabold">Conversemos</h2>
-          <p class="text-gray-600 mt-3">Completa el formulario y coordinamos una reunión. Respondemos en menos de 24h.</p>
-          <ul class="mt-6 space-y-3 text-gray-700">
-            <li><i class="fa-solid fa-circle-check text-gx-500 mr-2"></i> Plan a medida según objetivos</li>
-            <li><i class="fa-solid fa-circle-check text-gx-500 mr-2"></i> Sin tecnicismos, con claridad</li>
-            <li><i class="fa-solid fa-circle-check text-gx-500 mr-2"></i> Equipo implicado en resultados</li>
-          </ul>
+          <label for="nombre" class="block text-sm font-medium mb-1">Nombre y empresa</label>
+          <input id="nombre" type="text" class="w-full border rounded-lg px-4 py-3 outline-none focus:border-gx-500" placeholder="Ej. Valentina — Tienda Vela" required>
         </div>
-        <form class="bg-gray-50 rounded-2xl p-6 border space-y-4">
+        <div class="grid sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-sm font-medium mb-1">Nombre y empresa</label>
-            <input type="text" class="w-full border rounded-lg px-4 py-3 outline-none focus:border-gx-500" placeholder="Ej. Valentina — Tienda Vela" required>
-          </div>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-medium mb-1">Email</label>
-              <input type="email" class="w-full border rounded-lg px-4 py-3 outline-none focus:border-gx-500" placeholder="tucorreo@empresa.com" required>
-            </div>
-            <div>
-              <label class="block text-sm font-medium mb-1">WhatsApp</label>
-              <input type="tel" class="w-full border rounded-lg px-4 py-3 outline-none focus:border-gx-500" placeholder="+54 9 ..." required>
-            </div>
+            <label for="email" class="block text-sm font-medium mb-1">Email</label>
+            <input id="email" type="email" class="w-full border rounded-lg px-4 py-3 outline-none focus:border-gx-500" placeholder="tucorreo@empresa.com" required>
           </div>
           <div>
-            <label class="block text-sm font-medium mb-1">Servicio de interés</label>
-            <select class="w-full border rounded-lg px-4 py-3 outline-none focus:border-gx-500">
-              <option>Meta Ads</option>
-              <option>Edición de Videos</option>
-              <option>Funnel de Ventas</option>
-              <option>Optimización</option>
-              <option>Estrategias de Contenido</option>
-              <option>Manejo de Redes</option>
-            </select>
+            <label for="whatsapp" class="block text-sm font-medium mb-1">WhatsApp</label>
+            <input id="whatsapp" type="tel" class="w-full border rounded-lg px-4 py-3 outline-none focus:border-gx-500" placeholder="+54 9 ..." required>
+          </div>
+        </div>
+        <div>
+          <label for="servicio" class="block text-sm font-medium mb-1">Servicio de interés</label>
+          <select id="servicio" class="w-full border rounded-lg px-4 py-3 outline-none focus:border-gx-500">
+            <option>Meta Ads</option>
+            <option>Edición de Videos</option>
+            <option>Funnel de Ventas</option>
+            <option>Optimización</option>
+            <option>Estrategias de Contenido</option>
+            <option>Manejo de Redes</option>
+          </select>
+        </div>
+        <div>
+          <label for="objetivo" class="block text-sm font-medium mb-1">Cuéntanos brevemente tu objetivo</label>
+          <textarea id="objetivo" rows="4" class="w-full border rounded-lg px-4 py-3 outline-none focus:border-gx-500" placeholder="Ej. escalar ventas online y mejorar el ROAS"></textarea>
+        </div>
+        <button type="submit" class="gx-btn px-6 py-3 rounded-xl font-semibold w-full">Enviar</button>
+        <p class="text-xs text-gray-500 text-center">Al enviar aceptas ser contactado por email/WhatsApp.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const data = {
+      nombre: document.getElementById("nombre").value,
+      email: document.getElementById("email").value,
+      whatsapp: document.getElementById("whatsapp").value,
+      servicio: document.getElementById("servicio").value,
+      objetivo: document.getElementById("objetivo").value
+    };
+
+    await fetch("https://script.google.com/macros/s/AKfycbziYxuTqoIlhyL8dGcOteaQyl8SXJdLZ3VCK8ipgivBcw_0umfIiBdjXw9tQZaRh8-41g/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    alert("✅ Datos enviados y guardados correctamente.");
+    document.getElementById("contactForm").reset(); // limpia el formulario
+  });
+</script>
+
           </div>
           <div>
             <label class="block text-sm font-medium mb-1">Cuéntanos brevemente tu objetivo</label>
